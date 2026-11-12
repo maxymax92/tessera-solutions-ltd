@@ -1,0 +1,75 @@
+---
+import Wordmark from "./Wordmark.astro";
+
+const links = [
+  { href: "/#services", label: "Services" },
+  { href: "/#approach", label: "Approach" },
+  { href: "/#flip", label: "Flip" },
+  { href: "/#about", label: "About" },
+  { href: "/#contact", label: "Contact" },
+];
+---
+
+<header class="wrap header">
+  <a class="home" href="/" aria-label="Tessera Solutions home">
+    <Wordmark />
+  </a>
+  <nav aria-label="Main">
+    <ul>
+      {links.map((link) => (
+        <li>
+          <a href={link.href}>{link.label}</a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem 2rem;
+    padding-block: 1.5rem;
+  }
+
+  .home {
+    display: inline-flex;
+    padding-block: 0.375rem;
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.5rem;
+  }
+
+  nav a {
+    display: inline-block;
+    padding-block: 0.375rem;
+    font-size: 0.9375rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 160ms var(--ease);
+  }
+
+  nav a:hover {
+    color: var(--ink);
+  }
+
+  @media (max-width: 40rem) {
+    nav {
+      width: 100%;
+    }
+
+    ul {
+      gap: 0.25rem 1.125rem;
+    }
+
+    nav a {
+      font-size: 0.875rem;
+    }
+  }
+</style>

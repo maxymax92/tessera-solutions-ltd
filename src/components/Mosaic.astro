@@ -1,0 +1,68 @@
+---
+import { mosaic, mosaicGrid } from "../brand/mosaic.ts";
+
+const { columns, rows, cell, tile, radius, faint, soft } = mosaicGrid;
+---
+
+<svg
+  class="mosaic"
+  viewBox={`0 0 ${String(columns * cell)} ${String(rows * cell)}`}
+  style={`--faint: ${String(faint)}%; --soft: ${String(soft)}%`}
+  aria-hidden="true"
+  focusable="false"
+>
+  {mosaic().map((square) => (
+    <rect
+      x={square.column * cell}
+      y={square.row * cell}
+      width={tile}
+      height={tile}
+      rx={radius}
+      class={square.tone}
+      style={`--delay: ${String((columns - square.column + square.row) * 45)}ms`}
+    />
+  ))}
+</svg>
+
+<style>
+  .mosaic {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  rect {
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  .faint {
+    fill: color-mix(in oklch, var(--ink) var(--faint), transparent);
+  }
+
+  .soft {
+    fill: color-mix(in oklch, var(--ink) var(--soft), transparent);
+  }
+
+  .ink {
+    fill: var(--ink);
+  }
+
+  .accent {
+    fill: var(--tile);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    rect {
+      animation: settle 700ms var(--ease) both;
+      animation-delay: var(--delay);
+    }
+  }
+
+  @keyframes settle {
+    from {
+      opacity: 0;
+      transform: scale(0.6);
+    }
+  }
+</style>

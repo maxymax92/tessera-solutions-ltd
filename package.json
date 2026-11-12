@@ -1,0 +1,47 @@
+{
+  "name": "tessera-solutions-ltd",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@12.18.0",
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "24.22.2",
+      "onFail": "download"
+    }
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "brand": "node scripts/brand.ts",
+    "capture": "node scripts/capture.ts",
+    "typecheck": "astro check --minimumFailingSeverity hint",
+    "lint": "eslint --max-warnings 0 .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "pnpm typecheck && pnpm lint && pnpm format:check && pnpm build"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.12",
+    "@astrojs/sitemap": "3.7.4",
+    "@eslint/js": "10.0.1",
+    "@fontsource-variable/geist": "5.3.0",
+    "@fontsource-variable/geist-mono": "5.3.0",
+    "@types/fontkit": "2.0.9",
+    "@types/node": "24.10.1",
+    "astro": "7.4.8",
+    "eslint": "10.14.0",
+    "eslint-plugin-astro": "3.2.1",
+    "eslint-plugin-jsx-a11y-x": "0.2.0",
+    "fontkit": "2.0.4",
+    "geist": "1.9.2",
+    "globals": "17.14.0",
+    "jiti": "2.7.0",
+    "playwright": "1.65.0",
+    "prettier": "3.9.10",
+    "prettier-plugin-astro": "1.1.2",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.72.2"
+  }
+}

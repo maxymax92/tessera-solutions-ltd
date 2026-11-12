@@ -1,0 +1,44 @@
+---
+import { lockup } from "../brand/lockup.ts";
+import { tileRadius, tileSize, tiles } from "../brand/mark.ts";
+import wordmark from "../brand/wordmark.json";
+
+const box = lockup(wordmark);
+---
+
+<svg
+  class="wordmark"
+  viewBox={`0 0 ${String(box.width)} ${String(box.height)}`}
+  role="img"
+  aria-label="Tessera Solutions"
+>
+  <g transform={`scale(${String(box.markScale)})`}>
+    {tiles.map((tile) => (
+      <rect
+        x={tile.x}
+        y={tile.y}
+        width={tileSize}
+        height={tileSize}
+        rx={tileRadius}
+        class={tile.accent ? "accent" : undefined}
+      />
+    ))}
+  </g>
+  <path
+    transform={`translate(${String(box.textX)} ${String(box.textY)})`}
+    d={wordmark.d}
+  />
+</svg>
+
+<style>
+  .wordmark {
+    display: block;
+    height: 1.375rem;
+    width: auto;
+    fill: var(--ink);
+  }
+
+  .accent {
+    fill: var(--tile);
+  }
+</style>

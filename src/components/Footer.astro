@@ -1,0 +1,63 @@
+---
+import { company, mailto } from "../site.ts";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="wrap footer">
+  <div class="legal">
+    <p>{company.name}</p>
+    <p>
+      Registered in {company.jurisdiction}, company number {company.number}
+    </p>
+    <p>VAT number {company.vat}</p>
+    {company.registeredOffice !== null && (
+      <p>Registered office: {company.registeredOffice}</p>
+    )}
+  </div>
+  <div class="links">
+    <a href={mailto}>{company.email}</a>
+    <a href="/privacy">Privacy</a>
+    <p>
+      &copy; {year} {company.name}
+    </p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-block: 3rem 3.5rem;
+    border-top: 1px solid var(--line);
+    font-family: var(--mono);
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+
+  .legal p:first-child {
+    color: var(--ink);
+  }
+
+  .links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.125rem;
+  }
+
+  .links a {
+    color: var(--ink);
+    padding-block: 0.25rem;
+  }
+
+  @media (min-width: 48rem) {
+    .links {
+      align-items: flex-end;
+      text-align: right;
+    }
+  }
+</style>
